@@ -405,7 +405,7 @@ function App() {
     <main className="app-shell">
       <div className="header-strip">
         <h1 className="compact-title">
-          Chess, at the speed <em>of instinct.</em>
+          ChessLLM
         </h1>
         <div className="status-badge">
           <span className={`status-dot ${analyzing ? 'pulse' : ''}`} />
@@ -804,4 +804,3 @@ function App() {
 }
 
 export default App
-
