@@ -109,7 +109,7 @@ app.post('/api/jev/move', async (request, response) => {
       questionOrPrompt: `Goal: Choose the best move to win the game by maximizing overall positional quality (not short-sighted material grabbing).\n${SHARED_TACTICAL_CHECKLIST}`,
     })
 
-    const client = new TypeSafeClient()
+    const client = new TypeSafeClient({ apiKey: process.env.TYPESAFE_API_KEY })
     let totalInputTokens = 0
     let totalOutputTokens = 0
 
@@ -175,7 +175,14 @@ Please choose a legal move for ${context.turn} from the provided keys.`,
     })
   } catch (error) {
     const failure = providerFailure(error, 'Jev could not make a move.')
-    console.error('Jev move request failed:', failure.code)
+    const providerError = error as { status?: number; statusCode?: number; code?: string; message?: string; requestId?: string }
+    console.error('Jev move request failed:', {
+      code: failure.code,
+      providerStatus: providerError.status ?? providerError.statusCode,
+      providerCode: providerError.code,
+      providerMessage: providerError.message,
+      requestId: providerError.requestId,
+    })
     response.status(failure.status).json({ ...failure, model: 'jev-latest' })
   }
 })

@@ -6,11 +6,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts\" \"vite\"",
+    "dev": "concurrently \"env -u TYPESAFE_API_KEY -u LITELLM_API_KEY -u OPENAI_API_KEY -u LITELLM_PROXY_URL node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "server": "node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts",
+    "server": "env -u TYPESAFE_API_KEY -u LITELLM_API_KEY -u OPENAI_API_KEY -u LITELLM_PROXY_URL node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {
