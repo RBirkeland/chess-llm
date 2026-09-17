@@ -6,11 +6,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"tsx server.ts\" \"vite\"",
+    "dev": "concurrently \"node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts\" \"vite\"",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "server": "tsx server.ts",
+    "server": "node --env-file=.env node_modules/tsx/dist/cli.mjs server.ts",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {

@@ -2,6 +2,8 @@
 
 Chess LLM is a React and TypeScript chess board for playing against and comparing language models. It includes local Stockfish evaluation, move validation with `chess.js`, model latency and token telemetry, and a server-side proxy for model requests.
 
+![Chess LLM screenshot](screenshot.png)
+
 ## Requirements
 
 - Node.js 22 or newer
@@ -15,7 +17,7 @@ npm install
 cp .env.example .env
 ```
 
-Fill in the provider values in `.env`. The server reads these variables only on the server side:
+Fill in the provider values in `.env`. `npm run dev` and `npm run server` load this file automatically using Node's `--env-file=.env` option. Restart the server after changing credentials. The server reads these variables only on the server side:
 
 - `TYPESAFE_API_KEY` enables the TypeSafe Jev player.
 - `LITELLM_PROXY_URL` is the OpenAI-compatible chat completions endpoint. There is no public default endpoint.
